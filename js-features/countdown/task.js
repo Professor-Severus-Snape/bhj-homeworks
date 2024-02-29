@@ -30,7 +30,6 @@ let [hours, minutes, seconds] = startTimer_2.split(":"); // "01", "01", "05";
 const downloadLink = document.getElementById("download-link"); // доп. задание #2
 
 function countDown_2() {
-  debugger;
   if (+minutes > 59 || +seconds > 59) {
     alert("Невалидное значение");
     return;
