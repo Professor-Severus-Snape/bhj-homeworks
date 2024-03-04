@@ -2,7 +2,7 @@
 
 // --------------- обязательное задание: ---------------
 const timer_1 = document.getElementById("timer");
-let startTimer_1 = +timer_1.textContent; // 59
+let startTimer_1 = +timer_1.textContent; // startTimer_1 = 59
 
 function countDown_1() {
   if (startTimer_1 > 0) {
@@ -15,18 +15,16 @@ function countDown_1() {
     return;
   }
 
-  setTimeout(countDown_1, 1000); // рекурсивный setTimeout
+  setTimeout(countDown_1, 1000); // вложенный setTimeout
 }
 
 setTimeout(countDown_1, 1000);
 
 
 // --------------- дополнительные задания (#1 и #2): ---------------
-
 const timer_2 = document.getElementById("timer");
 let startTimer_2 = timer_2.textContent; // "01:01:05"
 let [hours, minutes, seconds] = startTimer_2.split(":"); // "01", "01", "05";
-
 const downloadLink = document.getElementById("download-link"); // доп. задание #2
 
 function countDown_2() {
@@ -57,7 +55,7 @@ function countDown_2() {
     }
   }
 
-  setTimeout(countDown_2, 1000); // рекурсивный setTimeout
+  setTimeout(countDown_2, 1000); // вложенный setTimeout
 }
 
 // setTimeout(countDown_2, 1000);
