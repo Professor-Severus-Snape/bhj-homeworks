@@ -2,6 +2,7 @@ body {
   font-family: Helvetica;
   font-weight: 300;
 }
+
 .modal {
   display: none;
   justify-content: center;
