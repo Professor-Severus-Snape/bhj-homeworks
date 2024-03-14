@@ -17,8 +17,8 @@ sliderDots.forEach((dot, index) => dot.addEventListener("click", () => changeSli
 function changeSlide(param) {
   let index = sliderItems.findIndex(item => item.classList.contains("slider__item_active"));
 
-  sliderItems.forEach(item => item.classList.remove("slider__item_active")); // снятие активности у всех слайдов
-  sliderDots.forEach(item => item.classList.remove("slider__dot_active")); // снятие активности у всех точек
+  sliderItems[index].classList.remove("slider__item_active"); // снятие активности у слайда
+  sliderDots[index].classList.remove("slider__dot_active"); // снятие активности у точки
 
   // проверка параметра на тип данных:
   if (isNaN(parseInt(param))) {
