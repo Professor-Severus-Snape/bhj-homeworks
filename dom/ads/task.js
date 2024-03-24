@@ -21,6 +21,5 @@ function rotate(cases) {
 
 rotators.forEach(rotator => {
   const rotatorCases = [...rotator.getElementsByClassName("rotator__case")];
-  // setTimeout(rotate, 1000, rotatorCases);
   rotate(rotatorCases);
 });
