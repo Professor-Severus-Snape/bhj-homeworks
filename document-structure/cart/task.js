@@ -4,23 +4,20 @@ const products = document.querySelector(".products"); // товары
 const cartProducts = document.querySelector(".cart__products"); // товары в корзине
 
 // добавление товара в корзину:
-function addCartProduct(item) {
-  const img = item.querySelector(".product > img");
-  const quantity = item.querySelector(".product .product__quantity-value");
+function addCartProduct(obj) {
   const cartProduct = document.createElement("div");
   cartProduct.className = "cart__product";
-  cartProduct.dataset.id = item.dataset.id;
-  cartProduct.insertAdjacentHTML("beforeend", `<img class="cart__product-image" src="${img.src}">`);
-  cartProduct.insertAdjacentHTML("beforeend", `<div class="cart__product-count">${quantity.textContent}</div>`);
+  cartProduct.dataset.id = obj.id;
+  cartProduct.insertAdjacentHTML("beforeend", `<img class="cart__product-image" src="${obj.src}">`);
+  cartProduct.insertAdjacentHTML("beforeend", `<div class="cart__product-count">${obj.quantity}</div>`);
   cartProducts.append(cartProduct);
 }
 
 // изменение количества уже имеющегося в корзине товара:
-function changeQuantity(item, index) {
+function changeQuantity(obj, index) {
   const cartProduct = cartProducts.children[index];
   const previousQuantity = +cartProduct.querySelector(".cart__product-count").textContent;
-  const addQuantity = +item.querySelector(".product .product__quantity-value").textContent;
-  cartProduct.querySelector(".cart__product-count").textContent = previousQuantity + addQuantity;
+  cartProduct.querySelector(".cart__product-count").textContent = previousQuantity + obj.quantity;
 }
 
 // делегирование события "клик":
@@ -35,12 +32,18 @@ products.addEventListener("click", event => {
     productQuantityValue.textContent++;
   } else if (event.target.classList.contains("product__add")) {
     const product = event.target.closest(".product"); // выбранный товар
-    const index = [...cartProducts.children].findIndex(child => child.dataset.id === product.dataset.id);
+    // формируем объект со свойствами для передачи в функцию по ссылке:
+    const productObj = {
+      id: product.dataset.id,
+      src: product.querySelector("img").src,
+      quantity: +product.querySelector(".product__quantity-value").textContent
+    };
+    const index = [...cartProducts.children].findIndex(child => child.dataset.id === productObj.id);
     // если выбранный товар уже есть в корзине:
     if (~index) {
-      changeQuantity(product, index);
+      changeQuantity(productObj, index);
     } else {
-      addCartProduct(product);
+      addCartProduct(productObj);
     }
   }
 });
