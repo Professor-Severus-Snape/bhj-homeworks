@@ -9,3 +9,11 @@ body {
 .poll__title {
   margin-bottom: 20px;
 }
+
+button {
+  background-color: rgb(109, 152, 252);
+}
+
+button:not(:last-child) {
+  margin-right: 10px;
+}
