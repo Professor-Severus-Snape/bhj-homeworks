@@ -1,6 +1,26 @@
+/* ---------- кроссбраузерная стилизация progressbar: ---------- */
 progress {
   margin-bottom: 10px;
+
+  background-color: gray;
+  border-radius: 20px;
 }
+
+progress::-moz-progress-bar {
+  background-color: gray;
+  border-radius: 20px;
+}
+
+progress::-webkit-progress-bar {
+  background-color: gray;
+  border-radius: 20px;
+}
+
+progress::-webkit-progress-value {
+  background-color: green;
+  border-radius: 20px;
+}
+/* ------------------------------------------------------------- */
 
 form {
   position: relative;
