@@ -3,9 +3,7 @@
 const progress = document.getElementById("progress");
 const form = document.getElementById("form");
 
-form.addEventListener("submit", event => {
-  event.preventDefault();
-
+function sendFile() {
   const formData = new FormData(form);
 
   const xhr = new XMLHttpRequest();
@@ -17,11 +15,22 @@ form.addEventListener("submit", event => {
 
   xhr.upload.addEventListener("load", () => {
     alert("Загрузка успешно завершена!");
+    form.reset();
     progress.value = "0.0";
     document.querySelector(".input__wrapper-desc").textContent = "Имя файла...";
   });
 
   xhr.send(formData);
-  
-  form.reset(); // NOTE: почему форма не очищается???
+}
+
+form.addEventListener("submit", event => {
+  event.preventDefault();
+
+  // Проверка на наличие файла:
+  const file = document.getElementById("file").files[0];
+  if (file) {
+    sendFile();
+  } else {
+    alert("Выберите, пожалуйста, файл для загрузки!")
+  }
 });
