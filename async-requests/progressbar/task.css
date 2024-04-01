@@ -7,7 +7,7 @@ progress {
 }
 
 progress::-moz-progress-bar {
-  background-color: gray;
+  background-color: #06f;
   border-radius: 20px;
 }
 
@@ -17,7 +17,7 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-  background-color: green;
+  background-color: #06f;
   border-radius: 20px;
 }
 /* ------------------------------------------------------------- */
