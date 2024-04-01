@@ -3,6 +3,11 @@
 const progress = document.getElementById("progress");
 const form = document.getElementById("form");
 
+function resetForm() {
+  form.reset();
+  document.querySelector(".input__wrapper-desc").textContent = "Имя файла...";
+}
+
 function sendFile() {
   const formData = new FormData(form);
 
@@ -15,9 +20,8 @@ function sendFile() {
 
   xhr.upload.addEventListener("load", () => {
     alert("Загрузка успешно завершена!");
-    form.reset();
+    resetForm();
     progress.value = "0.0";
-    document.querySelector(".input__wrapper-desc").textContent = "Имя файла...";
   });
 
   xhr.send(formData);
@@ -26,10 +30,16 @@ function sendFile() {
 form.addEventListener("submit", event => {
   event.preventDefault();
 
-  // Проверка на наличие файла:
   const file = document.getElementById("file").files[0];
+  // Проверка на наличие файла:
   if (file) {
-    sendFile();
+    // Ограничение размера до 20МБ:
+    if (file.size > 20 * 1024 * 1024) {
+      alert("Превышен допустимый вес. Уменьшите размер файла.");
+      resetForm();
+    } else {
+      sendFile();
+    }
   } else {
     alert("Выберите, пожалуйста, файл для загрузки!")
   }
